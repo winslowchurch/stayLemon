@@ -1,4 +1,5 @@
 import pygame
+from settings import WALKING_SPEED
 
 class Lemon:
     def __init__(self):
@@ -6,7 +7,7 @@ class Lemon:
         self.walking_images = [pygame.image.load("images/walk1.png"), pygame.image.load("images/walk2.png")]
         self.image = self.standing_image
         self.rect = self.image.get_rect(midbottom=(200, 500))
-        self.speed = 5
+        self.speed = WALKING_SPEED
         self.walk_index = 0
         self.facing_right = False  
 
@@ -43,24 +44,24 @@ class Lemon:
             self.image = pygame.transform.flip(self.image, True, False)
 
     def move(self, dx, dy, walls):
-        # Move horizontally and check collisions
+    # Move horizontally and check collisions
         self.rect.x += dx
         for wall in walls:
-            if self.rect.colliderect(wall.rect):  # Use wall.rect instead of wall
+            if self.rect.colliderect(wall):  # No need for wall.rect
                 if dx > 0:  # Moving right
-                    self.rect.right = wall.rect.left
+                    self.rect.right = wall.left
                 if dx < 0:  # Moving left
-                    self.rect.left = wall.rect.right
-        
+                    self.rect.left = wall.right
+
         # Move vertically and check collisions
         self.rect.y += dy
         for wall in walls:
-            if self.rect.colliderect(wall.rect):  # Use wall.rect instead of wall
+            if self.rect.colliderect(wall):  # No need for wall.rect
                 if dy > 0:  # Moving down
-                    self.rect.bottom = wall.rect.top
+                    self.rect.bottom = wall.top
                 if dy < 0:  # Moving up
-                    self.rect.top = wall.rect.bottom
-    
+                    self.rect.top = wall.bottom
+
     def animate_walk(self):
         self.walk_index += 0.1
         if self.walk_index >= len(self.walking_images):

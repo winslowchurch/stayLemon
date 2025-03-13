@@ -15,12 +15,9 @@ class Game:
         # Load textures
         self.background = pygame.image.load("images/woodFloor.png")
         
-        # Create walls
-        self.walls = [
-            Wall(100, 100),
-            Wall(200, 100),
-            Wall(300, 100)
-        ]
+        # Create walls (now handled in Wall class)
+        wall_positions = [(100, 100), (200, 100), (300, 100)]
+        self.walls = Wall(wall_positions)
     
     def run(self):
         while True:
@@ -35,10 +32,9 @@ class Game:
                     self.screen.blit(self.background, (x, y))  # Tile the background
             
             # Draw walls
-            for wall in self.walls:
-                wall.draw(self.screen)
+            self.walls.draw(self.screen)
             
-            self.lemon.update(self.walls)  # Pass walls for collision detection
+            self.lemon.update(self.walls.walls)  # Pass walls for collision detection
             self.lemon.draw(self.screen)
             
             pygame.display.update()
