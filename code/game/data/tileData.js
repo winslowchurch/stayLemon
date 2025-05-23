@@ -131,6 +131,8 @@ export const TILE_DEFINITIONS = {
     34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize } },
     35: { name: 'flowerPot', collides: true, colliderSize: { width: tileSize * 2, height: tileSize } },
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
+    37: { name: 'painting1', collides: false },
+
 
 
     // // -- Triggers --

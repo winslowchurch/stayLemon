@@ -1,5 +1,5 @@
 import { TILE_DEFINITIONS } from '../data/tileData.js';
-import { setupCamera, calibrateUICamera } from "../camera.js";
+import { calibrateUICamera } from "../camera.js";
 
 export class MapManager {
     constructor(scene) {
@@ -46,7 +46,7 @@ export class MapManager {
 
                     const tileImage = this.scene.add.image(x, y - imageOffsetY, def.name)
                         .setOrigin(0)
-                        .setDepth(layerIndex === 0 && !def.foreground ? 0 : y);
+                        .setDepth(layerIndex <= 1 ? 0 : y);
 
                     this.tileImages.push(tileImage);
 
