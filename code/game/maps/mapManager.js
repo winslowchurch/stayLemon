@@ -44,9 +44,13 @@ export class MapManager {
                     const imageHeight = texture.source[0].height;
                     const imageOffsetY = imageHeight - this.tileSize;
 
+                    let depth = 0;
+                    if (layerKey === 'objectLayer') {
+                        depth = def.wallDecoration ? y + 32 : y;
+                    }
                     const tileImage = this.scene.add.image(x, y - imageOffsetY, def.name)
                         .setOrigin(0)
-                        .setDepth(layerIndex <= 1 ? 0 : y);
+                        .setDepth(depth);
 
                     this.tileImages.push(tileImage);
 

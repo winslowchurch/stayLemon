@@ -20,8 +20,8 @@ export const houseMap = {
         [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
-        [null, null, null, null, null, 32, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, 32, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
@@ -30,9 +30,9 @@ export const houseMap = {
 
     objectLayer: [
         [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, 38, null, null, null, 37, null, null, null, null, null],
         [24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
         [null, null, null, null, null, null, 28, 34, null, null, null, null],
-        [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, 35, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],

@@ -20,7 +20,6 @@ export function create() {
 function setupInputHandlers(scene) {
     scene.input.on('pointerdown', (pointer) => {
         // Right click
-        if (scene.inventory.handleInventoryClick(pointer)) return;
         if (scene.inventory.useSelectedItem(pointer)) return;
     });
 
