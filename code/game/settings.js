@@ -1,0 +1,13 @@
+export const PLAYER_SETTINGS = {
+    playerSpeed: 75,
+    maxHealth: 50,
+    startingCoin: 10,
+};
+
+export const GAME_SETTINGS = {
+    screenWidth: 1280,
+    screenHeight: 752,
+    weatherDepth: 9998,
+    uiDepth: 9999,
+    uiTextDepth: 10000,
+}
