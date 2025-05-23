@@ -88,27 +88,29 @@ export class MapManager {
         const mapWidth = cols * this.tileSize;
         const mapHeight = rows * this.tileSize;
 
+        // Add full darkness overlay
         this.darknessLayer = this.scene.add.renderTexture(0, 0, mapWidth, mapHeight)
             .setDepth(9998)
             .setScrollFactor(1)
             .setOrigin(0);
 
-        this.darknessLayer.fill(0x000000, 0.7);
+        this.darknessLayer.fill(0x000000, 0.6);
 
+        // Create light cutouts
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < cols; col++) {
                 const tileCode = mapObj.objectLayer[row][col];
                 const def = TILE_DEFINITIONS[tileCode];
                 if (!def?.light) continue;
 
-                const x = col * this.tileSize + this.tileSize / 2;
-                const y = row * this.tileSize + this.tileSize / 2;
-                const radius = def.lightRadius ?? 16;
+                const baseX = col * this.tileSize + this.tileSize / 2;
+                const baseY = row * this.tileSize + this.tileSize / 2;
+                const offset = def.lightOffset ?? { x: 0, y: 0 };
+                const radius = 16;
 
                 const lightGfx = this.scene.make.graphics({ x: 0, y: 0, add: false });
                 lightGfx.fillStyle(0xffffff, 1);
-                lightGfx.fillCircle(x, y, radius);
-
+                lightGfx.fillCircle(baseX + offset.x, baseY + offset.y, radius);
                 this.darknessLayer.erase(lightGfx);
                 lightGfx.destroy();
             }

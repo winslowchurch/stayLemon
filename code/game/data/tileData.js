@@ -128,7 +128,7 @@ export const TILE_DEFINITIONS = {
     },
     32: { name: 'rug', collides: false },
     33: { name: 'meshDivider', collides: true, colliderSize: { width: tileSize * 2, height: tileSize } },
-    34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true },
+    34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -16 }, },
     35: { name: 'flowerPot', collides: true, colliderSize: { width: tileSize * 2, height: tileSize } },
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
     37: { name: 'painting1', collides: false, wallDecoration: true },
