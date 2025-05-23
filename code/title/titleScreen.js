@@ -30,7 +30,7 @@ export class TitleScreen extends Phaser.Scene {
                 .setTint(foregroundColor);
         };
 
-        // Add "Honeyspur Hollow" with shadow and foreground layers
+        // Add "Stay Lemon" with shadow and foreground layers
         addLayeredText(centerX, centerY - 150, 'Stay', 180, COLORS.darkRed, COLORS.lightOrange);
         addLayeredText(centerX, centerY, 'Lemon', 180, COLORS.darkRed, COLORS.lightOrange);
 

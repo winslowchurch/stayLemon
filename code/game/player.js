@@ -4,7 +4,7 @@ import { TILE_DEFINITIONS } from "./data/tileData.js";
 export function setupPlayer(scene) {
     scene.player = scene.physics.add.sprite(128, 64, 'lemon', 0);
     scene.player.setCollideWorldBounds(true);
-    scene.player.setSize(28, 10).setOffset(2, 22); // Collision box
+    scene.player.setSize(28, 10).setOffset(2, 21); // Collision box
     scene.player.directionFacing = 'left';
 
     scene.physics.add.collider(scene.player, scene.collidableTiles);
