@@ -24,11 +24,10 @@ export class MapManager {
         this.tileImages.forEach(img => img.destroy());
         this.tileImages = [];
 
-        // Assume all layers are same dimensions
         const rows = mapObj.baseLayer.length;
         const cols = mapObj.baseLayer[0].length;
 
-        LAYER_ORDER.forEach((layerKey, layerIndex) => {
+        LAYER_ORDER.forEach((layerKey) => {
             const layerData = mapObj[layerKey];
             for (let row = 0; row < rows; row++) {
                 for (let col = 0; col < cols; col++) {
@@ -48,6 +47,7 @@ export class MapManager {
                     if (layerKey === 'objectLayer') {
                         depth = def.wallDecoration ? y + 32 : y;
                     }
+
                     const tileImage = this.scene.add.image(x, y - imageOffsetY, def.name)
                         .setOrigin(0)
                         .setDepth(depth);
@@ -65,9 +65,44 @@ export class MapManager {
         const mapHeight = rows * this.tileSize;
         this.scene.physics.world.setBounds(0, 0, mapWidth, mapHeight);
         this.scene.cameras.main.setBounds(0, 0, mapWidth, mapHeight);
+
+        // === LIGHTING ===
+        if (this.darknessLayer) {
+            this.darknessLayer.destroy();
+        }
+
+        // Create darkness RenderTexture
+        this.darknessLayer = this.scene.add.renderTexture(0, 0, mapWidth, mapHeight)
+            .setDepth(9998) // Above world, below UI
+            .setScrollFactor(1)
+            .setOrigin(0);
+
+        // Fill with semi-transparent black
+        this.darknessLayer.fill(0x000000, 0.7);
+
+        // Punch light holes from objectLayer
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const tileCode = mapObj.objectLayer[row][col];
+                const def = TILE_DEFINITIONS[tileCode];
+                if (!def?.light) continue;
+
+                const lightX = col * this.tileSize + this.tileSize / 2;
+                const lightY = row * this.tileSize + this.tileSize / 2;
+                const radius = def.lightRadius ?? 16;
+
+                // Create a graphics object to draw the light shape
+                const lightGfx = this.scene.make.graphics({ x: 0, y: 0, add: false });
+                lightGfx.fillStyle(0xffffff, 1);
+                lightGfx.fillCircle(lightX, lightY, radius);
+
+                // Erase the circle from the darkness
+                this.darknessLayer.erase(lightGfx);
+                lightGfx.destroy();
+            }
+        }
         this.currentMap = mapObj;
     }
-
 
     resetMap() {
         if (this.currentMapObject) {
