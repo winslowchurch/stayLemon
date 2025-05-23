@@ -2,7 +2,6 @@ import { setupCamera, setupUICamera } from './camera.js';
 import { houseMap } from './maps/houseMap.js';
 import { setupPlayer } from './player.js';
 import { MapManager } from './maps/mapManager.js';
-import { setupUI } from './ui/ui.js';
 import { setupWeather } from "./weather.js";
 
 export function create() {
@@ -12,9 +11,8 @@ export function create() {
 
     setupWeather(this);
     setupPlayer(this);
-    setupCamera(this, houseMap.data);
+    setupCamera(this, houseMap);
     setupUICamera(this);
-    // setupUI(this);
     setupInputHandlers(this);
 }
 

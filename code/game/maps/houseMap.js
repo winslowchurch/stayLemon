@@ -1,15 +1,29 @@
 export const houseMap = {
     type: 'inside',
-    data: [
-        [[26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26]],
-        [[26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26]],
-        [[26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24], [26, 24]],
-        [[26], [26], [26, 28], [26, 34], [26], [26], [26], [26], [26], [26, 35], [26], [26], [26]],
-        [[26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26]],
-        [[26], [26], [26], [26], [26], [26], [26], [26, 29], [26], [26], [26], [26], [26]],
-        [[26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26]],
-        [[26], [26, 31], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26]],
-        [[26], [26], [26], [26], [26], [26], [26], [26], [26, 33], [26], [26], [26], [26]],
-        [[26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26]],
-    ]
+    baseLayer: [
+        [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+        [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+        [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+        [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+        [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+        [26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+
+    ],
+    decorationLayer: [
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, 32, null, null, null, null, null, null],
+
+    ],
+    objectLayer: [
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, 35, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+    ],
 };

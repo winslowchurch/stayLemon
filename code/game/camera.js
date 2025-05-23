@@ -1,9 +1,13 @@
 import { GAME_SETTINGS } from "./settings.js";
 
 export function setupCamera(scene, roomLayout) {
+    const layer = roomLayout.baseLayer;
+    const mapWidth = layer[0].length * 16;
+    const mapHeight = layer.length * 16;
+
     scene.cameras.main.startFollow(scene.player);
     scene.cameras.main.setZoom(5);
-    scene.cameras.main.setBounds(0, 0, roomLayout[0].length * 16, roomLayout.length * 16);
+    scene.cameras.main.setBounds(0, 0, mapWidth, mapHeight);
 }
 
 export function setupUICamera(scene) {

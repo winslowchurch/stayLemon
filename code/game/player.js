@@ -93,13 +93,15 @@ export function updatePlayerPosition(scene) {
 export function handlePlayerSwitchingMaps(scene) {
     if (!scene.player || !scene.mapManager.currentMap) return;
 
-    const playerTileX = Math.floor(scene.player.x / 16);
-    const playerTileY = Math.floor(scene.player.y / 16);
+    const map = scene.mapManager.currentMap;
+    const x = Math.floor(scene.player.x / 16);
+    const y = Math.floor(scene.player.y / 16);
 
-    const tileCodes = scene.mapManager.currentMap[playerTileY][playerTileX];
-    if (!Array.isArray(tileCodes) || tileCodes.length < 2) return;
+    // Check the objectLayer for tile interactions
+    const tileCode = map.objectLayer?.[y]?.[x];
 
-    const tileCode = tileCodes[1]; // Check the second number in the array
+    if (tileCode == null) return;
+
     const def = TILE_DEFINITIONS[tileCode];
 
     if (tileCode === 99 && def?.onEnter) {

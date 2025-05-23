@@ -11,30 +11,35 @@ export class MapManager {
 
     loadMap(mapObj) {
         this.currentMapObject = mapObj;
-        const mapData = mapObj.data;
-        // Clear existing tiles and colliders
+
+        const LAYER_ORDER = ['baseLayer', 'decorationLayer', 'objectLayer'];
+
+        // Clear previous
         if (this.scene.collidableTiles) {
             this.scene.collidableTiles.clear(true, true);
         } else {
             this.scene.collidableTiles = this.scene.physics.add.staticGroup();
         }
 
-        // Destroy previous tile images
         this.tileImages.forEach(img => img.destroy());
         this.tileImages = [];
 
-        for (let row = 0; row < mapData.length; row++) {
-            for (let col = 0; col < mapData[row].length; col++) {
-                const tileCodes = mapData[row][col];
-                const x = col * this.tileSize;
-                const y = row * this.tileSize;
+        // Assume all layers are same dimensions
+        const rows = mapObj.baseLayer.length;
+        const cols = mapObj.baseLayer[0].length;
 
-                if (!Array.isArray(tileCodes)) continue;
+        LAYER_ORDER.forEach((layerKey, layerIndex) => {
+            const layerData = mapObj[layerKey];
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const tileCode = layerData[row][col];
+                    if (tileCode === null || tileCode === undefined) continue;
 
-                tileCodes.forEach((tileCode, layerIndex) => {
                     const def = TILE_DEFINITIONS[tileCode];
-                    if (!def) return;
+                    if (!def) continue;
 
+                    const x = col * this.tileSize;
+                    const y = row * this.tileSize;
                     const texture = this.scene.textures.get(def.name);
                     const imageHeight = texture.source[0].height;
                     const imageOffsetY = imageHeight - this.tileSize;
@@ -45,22 +50,24 @@ export class MapManager {
 
                     this.tileImages.push(tileImage);
 
-                    if (def.collides) {
+                    if (def.collides && layerKey === 'objectLayer') {
                         this.createCollider(x, y, def, tileImage);
                     }
-                });
+                }
             }
-        }
-        this.currentMap = mapData;
-        const mapWidth = mapData[0].length * 16;
-        const mapHeight = mapData.length * 16;
+        });
+
+        const mapWidth = cols * this.tileSize;
+        const mapHeight = rows * this.tileSize;
         this.scene.physics.world.setBounds(0, 0, mapWidth, mapHeight);
         this.scene.cameras.main.setBounds(0, 0, mapWidth, mapHeight);
+        this.currentMap = mapObj;
     }
 
+
     resetMap() {
-        if (this.currentMap) {
-            this.loadMap(this.currentMap);
+        if (this.currentMapObject) {
+            this.loadMap(this.currentMapObject);
             calibrateUICamera(this.scene);
         }
     }
