@@ -14,7 +14,6 @@ export class MapManager {
         this.clearPreviousMap();
         this.buildLayers(mapObj);
         this.setWorldBounds(mapObj);
-        this.renderLighting(mapObj);
         this.currentMap = mapObj;
     }
 
@@ -88,15 +87,33 @@ export class MapManager {
         const mapWidth = cols * this.tileSize;
         const mapHeight = rows * this.tileSize;
 
-        // Add full darkness overlay
-        this.darknessLayer = this.scene.add.renderTexture(0, 0, mapWidth, mapHeight)
-            .setDepth(9998)
-            .setScrollFactor(1)
-            .setOrigin(0);
+        // If the darknessLayer already exists, clear it. Otherwise, create it
 
+        if (!this.darknessLayer) {
+            this.darknessLayer = this.scene.add.renderTexture(0, 0, mapWidth, mapHeight)
+                .setDepth(9998)
+                .setScrollFactor(1)
+                .setOrigin(0);
+        } else {
+            this.darknessLayer.clear();
+        }
+
+        // Fill with dark overlay
         this.darknessLayer.fill(0x000000, 0.6);
 
-        // Create light cutouts
+        // Prepare a graphics object once for drawing light gradients
+        if (!this.lightGfx) {
+            this.lightGfx = this.scene.make.graphics({ x: 0, y: 0, add: false });
+        }
+
+        // Flicker parameters
+        const flickerBaseRadius = 48;
+        const flickerRange = 0.5;  // flicker radius varies by ±4
+        const flickerSpeed = 0.00005;  // speed of flicker animation
+
+        // Animate flicker with time
+        const time = this.scene.time.now;
+
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < cols; col++) {
                 const tileCode = mapObj.objectLayer[row][col];
@@ -106,14 +123,29 @@ export class MapManager {
                 const baseX = col * this.tileSize + this.tileSize / 2;
                 const baseY = row * this.tileSize + this.tileSize / 2;
                 const offset = def.lightOffset ?? { x: 0, y: 0 };
-                const radius = 16;
 
-                const lightGfx = this.scene.make.graphics({ x: 0, y: 0, add: false });
-                lightGfx.fillStyle(0xffffff, 1);
-                lightGfx.fillCircle(baseX + offset.x, baseY + offset.y, radius);
-                this.darknessLayer.erase(lightGfx);
-                lightGfx.destroy();
+                // Flicker radius oscillates smoothly over time
+                const flicker = flickerRange * Math.sin(time * flickerSpeed * (row + col + 1) * 10);
+                const radius = flickerBaseRadius + flicker;
+
+                // Draw the radial gradient for the light
+                this.drawLightGradient(baseX + offset.x, baseY + offset.y, radius);
+
+                // Erase the gradient from darknessLayer to create light effect
+                this.darknessLayer.erase(this.lightGfx);
+                this.lightGfx.clear();
             }
+        }
+    }
+
+    drawLightGradient(x, y, radius) {
+        const steps = 16;  // Number of concentric circles for gradient
+        for (let i = steps; i > 0; i--) {
+            const alpha = (1 / steps) * i * 0.2;  // Max alpha about 0.8
+            const r = (radius / steps) * i;
+
+            this.lightGfx.fillStyle(0xffffff, alpha);
+            this.lightGfx.fillCircle(x, y, r);
         }
     }
 
@@ -151,10 +183,3 @@ export class MapManager {
         collider.tile = { ...def, image: tileImage, collider, health: def.health || 0 };
     }
 }
-
-// export function switchToHoneyspurMap(scene) {
-//     scene.mapManager.loadMap(honeyspurMap);
-//     scene.player.setPosition(64, 64); // Adjust later
-//     setupCamera(scene, honeyspurMap);
-//     calibrateUICamera(scene);
-// }

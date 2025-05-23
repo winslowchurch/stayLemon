@@ -18,11 +18,6 @@ export function create() {
 
 // Function to set up input handlers
 function setupInputHandlers(scene) {
-    scene.input.on('pointerdown', (pointer) => {
-        // Right click
-        if (scene.inventory.useSelectedItem(pointer)) return;
-    });
-
     scene.input.keyboard.on('keydown', (event) => {
         scene.inventory.handleNumberPress(event.key);
     });
