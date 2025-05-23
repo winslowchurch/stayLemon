@@ -13,7 +13,7 @@ const assets = {
         buildings: ['house1', 'house2'],
         food: ['cactusChunk', 'cake', 'steak'],
         misc: ['mapTrigger'],
-        decoration: ['painting1', 'painting2', 'rug', 'meshDivider', 'flowerDisplay1', 'flowerDisplay2', 'flowerDisplay3', 'furnace', 'barCart', 'bed', 'sideTable', 'flowerPot'],
+        decoration: ['painting1', 'painting2', 'rug', 'meshDivider', 'flowerDisplay1', 'flowerDisplay2', 'flowerDisplay3', 'furnace', 'barCart', 'bed', 'sideTable', 'flowerPot', 'window1'],
         walls: ['blueStripeWall', 'woodWall', 'tileFloor', 'woodFloor']
     },
     audio: ['pop', 'textBlip', 'success',],
