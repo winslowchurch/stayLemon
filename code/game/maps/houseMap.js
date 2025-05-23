@@ -37,7 +37,7 @@ export const houseMap = {
         [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, 29, null, null],
-        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, 39, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null],
     ],
 };

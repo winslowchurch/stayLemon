@@ -133,7 +133,7 @@ export const TILE_DEFINITIONS = {
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
     37: { name: 'painting1', collides: false, wallDecoration: true },
     38: { name: 'painting2', collides: false, wallDecoration: true },
-
+    39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -16 }, },
 
     // // -- Triggers --
     // 99: {
