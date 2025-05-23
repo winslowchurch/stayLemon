@@ -18,7 +18,7 @@ const assets = {
     },
     audio: ['pop', 'textBlip', 'success',],
     spritesheets: [
-        { key: 'lemon', path: 'characters/lemonWalkingSprite.png', frameWidth: 16, frameHeight: 32 },
+        { key: 'lemon', path: 'characters/lemonWalkingSprite.png', frameWidth: 32, frameHeight: 32 },
         { key: 'butterfly', path: 'critters/butterflySprites.png', frameWidth: 16, frameHeight: 16 },
         { key: 'rainDrop', path: 'misc/rainSprite.png', frameWidth: 16, frameHeight: 16 },
         { key: 'rainFloor', path: 'misc/rainFloorSprite.png', frameWidth: 16, frameHeight: 16 }

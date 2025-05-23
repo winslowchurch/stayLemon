@@ -4,7 +4,7 @@ import { TILE_DEFINITIONS } from "./data/tileData.js";
 export function setupPlayer(scene) {
     scene.player = scene.physics.add.sprite(128, 64, 'lemon', 0);
     scene.player.setCollideWorldBounds(true);
-    scene.player.setSize(32, 32); // Collision box
+    scene.player.setSize(28, 10).setOffset(2, 22); // Collision box
     scene.player.directionFacing = 'left';
 
     scene.physics.add.collider(scene.player, scene.collidableTiles);
@@ -19,27 +19,27 @@ export function setupPlayer(scene) {
 
     // Create animations for walking in different directions
     scene.anims.create({
-        key: 'walk-left',
+        key: 'walk-right',
         frames: scene.anims.generateFrameNumbers('lemon', { start: 0, end: 3 }),
         frameRate: 8,
         repeat: -1
     });
 
     scene.anims.create({
-        key: 'walk-right',
+        key: 'walk-left',
         frames: scene.anims.generateFrameNumbers('lemon', { start: 4, end: 7 }),
         frameRate: 8,
         repeat: -1
     });
 
     scene.anims.create({
-        key: 'idle-left',
+        key: 'idle-right',
         frames: [{ key: 'lemon', frame: 0 }],
         frameRate: 1
     });
 
     scene.anims.create({
-        key: 'idle-right',
+        key: 'idle-left',
         frames: [{ key: 'lemon', frame: 4 }],
         frameRate: 1
     });
@@ -56,28 +56,27 @@ export function updatePlayerPosition(scene) {
     let vx = 0;
     let vy = 0;
 
-    if (cursors.left.isDown || wasd.left.isDown) vx = -speed;
-    else if (cursors.right.isDown || wasd.right.isDown) vx = speed;
+    if (cursors.left.isDown || wasd.left.isDown) {
+        vx = -speed;
+        player.directionFacing = 'left';
+    } else if (cursors.right.isDown || wasd.right.isDown) {
+        vx = speed;
+        player.directionFacing = 'right';
+    }
 
     if (cursors.up.isDown || wasd.up.isDown) {
         vy = -speed;
-        player.directionFacing = 'left';
     } else if (cursors.down.isDown || wasd.down.isDown) {
         vy = speed;
-        player.directionFacing = 'right';
     }
 
     player.setVelocity(vx, vy);
 
     if (vx !== 0 || vy !== 0) {
-        if (vy < 0) {
-            player.anims.play('walk-left', true); // Walking up
-        } else if (vy > 0) {
-            player.anims.play('walk-right', true); // Walking down
-        } else if (player.anims.currentAnim?.key === 'walk-left') {
-            player.anims.play('walk-left', true); // Continue walking up
+        if (player.directionFacing === 'left') {
+            player.anims.play('walk-left', true);
         } else {
-            player.anims.play('walk-right', true); // Continue walking down
+            player.anims.play('walk-right', true);
         }
     } else {
         if (player.directionFacing === 'left') {
