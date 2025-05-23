@@ -7,7 +7,7 @@ const assets = {
         { key: 'pixelFont', png: `${FONT_PATH}round_6x6.png`, xml: `${FONT_PATH}round_6x6.xml` },
     ],
     images: {
-        ui: ['inventoryBar', 'healthBar', 'textBox', 'closeButton',],
+        ui: ['inventoryBar', 'textBox', 'closeButton',],
         nature: ['desert1', 'desert2', 'desert3', 'wall1', 'wall2', 'wall3', 'wall4', 'wall5', 'wall6', 'wall7', 'wall8', 'wall9', 'grass1', 'grass2', 'grassPath', 'skull', 'rock'],
         plants: ['cactus1', 'cactus2', 'deadTree', 'pineTree'],
         buildings: ['house1', 'house2'],
@@ -16,7 +16,7 @@ const assets = {
         decoration: ['painting1', 'painting2', 'rug', 'meshDivider', 'flowerDisplay1', 'flowerDisplay2', 'flowerDisplay3', 'furnace', 'barCart', 'bed', 'sideTable', 'flowerPot'],
         walls: ['blueStripeWall', 'woodWall', 'tileFloor', 'woodFloor']
     },
-    audio: ['pop', 'bite', 'footstep', 'textBlip', 'success',],
+    audio: ['pop', 'textBlip', 'success',],
     spritesheets: [
         { key: 'lemon', path: 'characters/lemonWalkingSprite.png', frameWidth: 16, frameHeight: 32 },
         { key: 'butterfly', path: 'critters/butterflySprites.png', frameWidth: 16, frameHeight: 16 },

@@ -2,12 +2,10 @@ import { PLAYER_SETTINGS } from "./settings.js";
 import { TILE_DEFINITIONS } from "./data/tileData.js";
 
 export function setupPlayer(scene) {
-    scene.player = scene.physics.add.sprite(64, 64, 'lemon', 0);
+    scene.player = scene.physics.add.sprite(128, 64, 'lemon', 0);
     scene.player.setCollideWorldBounds(true);
-    scene.player.setSize(14, 8).setOffset(1, 24); // Collision box
-    scene.player.directionFacing = 'down';
-    scene.player.health = PLAYER_SETTINGS.maxHealth;
-    scene.player.maxHealth = PLAYER_SETTINGS.maxHealth;
+    scene.player.setSize(32, 32); // Collision box
+    scene.player.directionFacing = 'left';
 
     scene.physics.add.collider(scene.player, scene.collidableTiles);
 
@@ -21,27 +19,27 @@ export function setupPlayer(scene) {
 
     // Create animations for walking in different directions
     scene.anims.create({
-        key: 'walk-down',
+        key: 'walk-left',
         frames: scene.anims.generateFrameNumbers('lemon', { start: 0, end: 3 }),
         frameRate: 8,
         repeat: -1
     });
 
     scene.anims.create({
-        key: 'walk-up',
+        key: 'walk-right',
         frames: scene.anims.generateFrameNumbers('lemon', { start: 4, end: 7 }),
         frameRate: 8,
         repeat: -1
     });
 
     scene.anims.create({
-        key: 'idle-down',
+        key: 'idle-left',
         frames: [{ key: 'lemon', frame: 0 }],
         frameRate: 1
     });
 
     scene.anims.create({
-        key: 'idle-up',
+        key: 'idle-right',
         frames: [{ key: 'lemon', frame: 4 }],
         frameRate: 1
     });
@@ -51,7 +49,7 @@ export function updatePlayerPosition(scene) {
     const player = scene.player;
     const cursors = scene.cursors;
     const wasd = scene.wasd;
-    if (!player || player.isSwinging || player.health <= 0) return;
+    if (!player) return;
 
     const speed = PLAYER_SETTINGS.playerSpeed;
 
@@ -63,46 +61,34 @@ export function updatePlayerPosition(scene) {
 
     if (cursors.up.isDown || wasd.up.isDown) {
         vy = -speed;
-        player.directionFacing = 'up';
+        player.directionFacing = 'left';
     } else if (cursors.down.isDown || wasd.down.isDown) {
         vy = speed;
-        player.directionFacing = 'down';
+        player.directionFacing = 'right';
     }
 
     player.setVelocity(vx, vy);
 
     if (vx !== 0 || vy !== 0) {
         if (vy < 0) {
-            player.anims.play('walk-up', true); // Walking up
+            player.anims.play('walk-left', true); // Walking up
         } else if (vy > 0) {
-            player.anims.play('walk-down', true); // Walking down
-        } else if (player.anims.currentAnim?.key === 'walk-up') {
-            player.anims.play('walk-up', true); // Continue walking up
+            player.anims.play('walk-right', true); // Walking down
+        } else if (player.anims.currentAnim?.key === 'walk-left') {
+            player.anims.play('walk-left', true); // Continue walking up
         } else {
-            player.anims.play('walk-down', true); // Continue walking down
+            player.anims.play('walk-right', true); // Continue walking down
         }
     } else {
-        if (player.directionFacing === 'up') {
-            player.anims.play('idle-up');
+        if (player.directionFacing === 'left') {
+            player.anims.play('idle-left');
         } else {
-            player.anims.play('idle-down');
+            player.anims.play('idle-right');
         }
     }
 
     // Update player's depth based on its y position
     player.setDepth(player.y);
-
-    const isMoving = vx !== 0 || vy !== 0;
-
-    if (isMoving) {
-        if (!player.footstepSound.isPlaying) {
-            player.footstepSound.play();
-        }
-    } else {
-        if (player.footstepSound.isPlaying) {
-            player.footstepSound.stop();
-        }
-    }
 }
 
 export function handlePlayerSwitchingMaps(scene) {

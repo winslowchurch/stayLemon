@@ -1,5 +1,4 @@
 import { ITEM_DATA } from "../data/itemData.js";
-import { playSwingAnimation } from "../player.js";
 import { GAME_SETTINGS } from "../settings.js";
 
 export class Inventory {
@@ -140,9 +139,6 @@ export class Inventory {
                     }
                 }
 
-                // Apply health effect
-                this.scene.player.health = Math.min(this.scene.player.health + itemData.healAmount, this.scene.player.maxHealth);
-                this.scene.sound.play("bite");
                 return true;
             }
         }
@@ -159,7 +155,6 @@ export class Inventory {
         const player = this.scene.player;
         const toolRange = itemData.range || 32;
 
-        playSwingAnimation(this.scene);
         // Trigger onHit for any nearby tile
         const nearbyTiles = this.scene.collidableTiles.getChildren().filter(tile => {
             const dist = Phaser.Math.Distance.Between(player.body.x, player.body.y, tile.body.x, tile.body.y);

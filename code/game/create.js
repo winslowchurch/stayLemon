@@ -14,7 +14,7 @@ export function create() {
     setupPlayer(this);
     setupCamera(this, houseMap.data);
     setupUICamera(this);
-    setupUI(this);
+    // setupUI(this);
     setupInputHandlers(this);
 }
 

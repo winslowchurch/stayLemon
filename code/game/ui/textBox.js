@@ -183,8 +183,6 @@ export function showSuccessBox(scene) {
 }
 
 export function restartGame(scene) {
-    scene.player.health = scene.player.maxHealth;
-
     // Reset inventory
     scene.inventory.clearInventory();
     scene.inventory.addItem('rustyHatchet');

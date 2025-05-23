@@ -1,4 +1,3 @@
-import { switchToHoneyspurMap } from "../maps/mapManager.js";
 import { ITEM_DATA } from "../data/itemData.js";
 const tileSize = 16;
 
@@ -134,10 +133,10 @@ export const TILE_DEFINITIONS = {
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
 
 
-    // -- Triggers --
-    99: {
-        name: 'mapTrigger',
-        collides: false,
-        onEnter: (scene) => switchToHoneyspurMap(scene)
-    },
+    // // -- Triggers --
+    // 99: {
+    //     name: 'mapTrigger',
+    //     collides: false,
+    //     onEnter: (scene) => switchToHoneyspurMap(scene)
+    // },
 };

@@ -1,7 +1,5 @@
 export const PLAYER_SETTINGS = {
     playerSpeed: 75,
-    maxHealth: 50,
-    startingCoin: 10,
 };
 
 export const GAME_SETTINGS = {

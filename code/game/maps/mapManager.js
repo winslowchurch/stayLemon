@@ -1,5 +1,4 @@
 import { TILE_DEFINITIONS } from '../data/tileData.js';
-import { honeyspurMap } from './honeyspurMap.js';
 import { setupCamera, calibrateUICamera } from "../camera.js";
 
 export class MapManager {
@@ -94,9 +93,9 @@ export class MapManager {
     }
 }
 
-export function switchToHoneyspurMap(scene) {
-    scene.mapManager.loadMap(honeyspurMap);
-    scene.player.setPosition(64, 64); // Adjust later
-    setupCamera(scene, honeyspurMap);
-    calibrateUICamera(scene);
-}
+// export function switchToHoneyspurMap(scene) {
+//     scene.mapManager.loadMap(honeyspurMap);
+//     scene.player.setPosition(64, 64); // Adjust later
+//     setupCamera(scene, honeyspurMap);
+//     calibrateUICamera(scene);
+// }
