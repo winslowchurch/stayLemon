@@ -7,7 +7,7 @@ const assets = {
         { key: 'pixelFont', png: `${FONT_PATH}round_6x6.png`, xml: `${FONT_PATH}round_6x6.xml` },
     ],
     images: {
-        ui: ['inventoryBar', 'textBox', 'closeButton',],
+        ui: ['textBox', 'closeButton',],
         nature: ['desert1', 'desert2', 'desert3', 'wall1', 'wall2', 'wall3', 'wall4', 'wall5', 'wall6', 'wall7', 'wall8', 'wall9', 'grass1', 'grass2', 'grassPath', 'skull', 'rock'],
         plants: ['cactus1', 'cactus2', 'deadTree', 'pineTree'],
         buildings: ['house1', 'house2'],

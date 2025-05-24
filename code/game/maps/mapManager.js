@@ -1,5 +1,6 @@
 import { TILE_DEFINITIONS } from '../data/tileData.js';
 import { calibrateUICamera } from "../camera.js";
+import { GAME_SETTINGS } from '../settings.js';
 
 export class MapManager {
     constructor(scene) {
@@ -103,7 +104,7 @@ export class MapManager {
 
         if (!this.darknessLayer) {
             this.darknessLayer = this.scene.add.renderTexture(0, 0, mapWidth, mapHeight)
-                .setDepth(9998)
+                .setDepth(GAME_SETTINGS.lightingDepth)
                 .setScrollFactor(1)
                 .setOrigin(0);
         } else {
@@ -111,7 +112,7 @@ export class MapManager {
         }
 
         // Fill with dark overlay
-        this.darknessLayer.fill(0x000000, 0.6);
+        this.darknessLayer.fill(0x000000, 0.7);
 
         // Prepare a graphics object once for drawing light gradients
         if (!this.lightGfx) {
