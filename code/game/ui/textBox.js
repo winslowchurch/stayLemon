@@ -165,28 +165,3 @@ export class TextBox {
         });
     }
 }
-
-export function showFailureBox(scene) {
-    scene.physics.pause();
-    const failureText = "You died. Click 'X' to restart.";
-    scene.textBox = new TextBox(scene, failureText, () => {
-        scene.physics.resume();
-        restartGame(scene);
-    });
-}
-
-export function showSuccessBox(scene) {
-    const successText = "You did it! Please enjoy your prize.";
-    scene.textBox = new TextBox(scene, successText, () => {
-        scene.inventory.addItem('trophy');
-    });
-}
-
-export function restartGame(scene) {
-    // Reset inventory
-    scene.inventory.clearInventory();
-    scene.inventory.addItem('rustyHatchet');
-
-    // Reset the map
-    scene.mapManager.resetMap();
-}

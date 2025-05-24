@@ -128,12 +128,21 @@ export const TILE_DEFINITIONS = {
     },
     32: { name: 'rug', collides: false },
     33: { name: 'meshDivider', collides: true, colliderSize: { width: tileSize * 2, height: tileSize } },
-    34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -16 }, },
-    35: { name: 'flowerPot', collides: true, colliderSize: { width: tileSize * 2, height: tileSize } },
+    34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -tileSize }, },
+    35: { name: 'flowerPot', collides: true, colliderSize: { width: tileSize * 2 - 16, height: tileSize - 5 }, colliderOffset: { x: 8 } },
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
     37: { name: 'painting1', collides: false, wallDecoration: true },
     38: { name: 'painting2', collides: false, wallDecoration: true },
-    39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -16 }, },
+    39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -tileSize } },
+    40: {
+        name: 'window1',
+        wallDecoration: true,
+        collides: false,
+        hasDayNightVariant: true,
+        light: true,
+        dayFrame: { x: 0, width: tileSize },
+        nightFrame: { x: tileSize, width: tileSize },
+    },
 
     // // -- Triggers --
     // 99: {

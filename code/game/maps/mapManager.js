@@ -7,6 +7,7 @@ export class MapManager {
         this.tileSize = 16;
         this.currentMap = null;
         this.tileImages = [];
+        this.isDay = true;
     }
 
     loadMap(mapObj) {
@@ -59,10 +60,21 @@ export class MapManager {
                         ? (def.wallDecoration ? y + 32 : y)
                         : 0;
 
-                    const tileImage = this.scene.add.image(x, y - imageOffsetY, def.name)
-                        .setOrigin(0)
-                        .setDepth(depth);
+                    const textureKey = def.name;
 
+                    let tileImage;
+                    if (def.hasDayNightVariant) {
+                        const frame = this.isDay ? def.dayFrame : def.nightFrame;
+
+                        tileImage = this.scene.add.image(x, y - imageOffsetY, textureKey)
+                            .setCrop(frame.x, 0, frame.width, imageHeight)
+                            .setOrigin(0)
+                            .setDepth(depth);
+                    } else {
+                        tileImage = this.scene.add.image(x, y - imageOffsetY, textureKey)
+                            .setOrigin(0)
+                            .setDepth(depth);
+                    }
                     this.tileImages.push(tileImage);
 
                     if (def.collides && layerKey === 'objectLayer') {
@@ -119,6 +131,7 @@ export class MapManager {
                 const tileCode = mapObj.objectLayer[row][col];
                 const def = TILE_DEFINITIONS[tileCode];
                 if (!def?.light) continue;
+                if (def.hasDayNightVariant && !this.isDay) continue;
 
                 const baseX = col * this.tileSize + this.tileSize / 2;
                 const baseY = row * this.tileSize + this.tileSize / 2;
