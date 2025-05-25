@@ -141,6 +141,8 @@ export const TILE_DEFINITIONS = {
 
     44: { name: 'ceiling1', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize }, imageOffset: { y: -1 } },
     45: { name: 'ceiling2', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize } },
+    46: { name: 'ceiling3', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize } },
+    47: { name: 'ceiling4', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize } },
 
     // // -- Triggers --
     // 99: {
