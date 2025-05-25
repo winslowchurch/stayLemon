@@ -8,7 +8,7 @@ export class MapManager {
         this.tileSize = 16;
         this.currentMap = null;
         this.tileImages = [];
-        this.isDay = false;
+        this.isDay = true;
     }
 
     loadMap(mapObj) {
@@ -55,7 +55,10 @@ export class MapManager {
 
                     const texture = this.scene.textures.get(def.name);
                     const imageHeight = texture.source[0].height;
-                    const imageOffsetY = imageHeight - this.tileSize;
+                    const defaultImageOffsetY = imageHeight - this.tileSize;
+
+                    const addedYOffset = def.imageOffset?.y ?? 0;
+                    const imageOffsetY = defaultImageOffsetY + addedYOffset;
 
                     const depth = layerKey === 'objectLayer'
                         ? (def.wallDecoration ? y + 32 : y)
@@ -100,7 +103,7 @@ export class MapManager {
         }
 
         // Slightly purplish darkness tint
-        this.darknessLayer.fill(0x040112, 0.75);
+        this.darknessLayer.fill(0x040112, 0.8);
 
         if (!this.lightGfx) {
             this.lightGfx = this.scene.make.graphics({ x: 0, y: 0, add: false });
@@ -136,7 +139,6 @@ export class MapManager {
                 if (def.light === 'window') {
                     color = 0xfff2b3; // soft yellow
                 } else if (def.light === 'flame') {
-                    console.log("flame");
                     color = 0xffa64d; // warm orange
                 }
 
@@ -156,13 +158,6 @@ export class MapManager {
 
             this.lightGfx.fillStyle(color, alpha);
             this.lightGfx.fillCircle(x, y, r);
-        }
-    }
-
-    resetMap() {
-        if (this.currentMapObject) {
-            this.loadMap(this.currentMapObject);
-            calibrateUICamera(this.scene);
         }
     }
 

@@ -132,12 +132,15 @@ export const TILE_DEFINITIONS = {
     35: { name: 'flowerPot', collides: true, colliderSize: { width: tileSize * 2 - 16, height: tileSize - 5 }, colliderOffset: { x: 8 } },
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
     37: { name: 'painting1', collides: false, wallDecoration: true },
-    38: { name: 'painting2', collides: false, wallDecoration: true },
+    38: { name: 'painting2', collides: false, wallDecoration: true, imageOffset: { y: -5 } },
     39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: 'bulb', lightOffset: { x: 0, y: -tileSize } },
-    40: { name: 'window1', collides: false, wallDecoration: true, light: 'window' },
+    40: { name: 'window1', collides: false, wallDecoration: true, light: 'window', imageOffset: { y: -5 } },
     41: { name: 'window2', collides: false, wallDecoration: true, light: 'window' },
-    42: { name: 'window3', collides: false, wallDecoration: true, light: 'window' },
+    42: { name: 'window3', collides: false, wallDecoration: true, light: 'window', imageOffset: { y: -tileSize } },
     43: { name: 'window4', collides: false, wallDecoration: true, light: 'window' },
+
+    44: { name: 'ceiling1', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize }, imageOffset: { y: -1 } },
+    45: { name: 'ceiling2', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize } },
 
     // // -- Triggers --
     // 99: {
