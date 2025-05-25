@@ -102,7 +102,7 @@ export class MapManager {
         }
 
         // Fill with dark overlay
-        this.darknessLayer.fill(0x000000, 0.7);
+        this.darknessLayer.fill(0x1a002a, 0.7);
 
         // Prepare a graphics object once for drawing light gradients
         if (!this.lightGfx) {
@@ -147,9 +147,9 @@ export class MapManager {
     }
 
     drawLightGradient(x, y, radius) {
-        const steps = 16;  // Number of concentric circles for gradient
+        const steps = 32;  // Number of concentric circles for gradient
         for (let i = steps; i > 0; i--) {
-            const alpha = (1 / steps) * i * 0.2;  // Max alpha about 0.8
+            const alpha = (1 / steps) * i * 0.1;  // Max alpha about 0.8
             const r = (radius / steps) * i;
 
             this.lightGfx.fillStyle(0xffffff, alpha);
