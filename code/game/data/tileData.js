@@ -136,6 +136,8 @@ export const TILE_DEFINITIONS = {
     39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -tileSize } },
     40: { name: 'window1', collides: false, wallDecoration: true, naturalLight: true },
     41: { name: 'window2', collides: false, wallDecoration: true, naturalLight: true },
+    42: { name: 'window3', collides: false, wallDecoration: true, naturalLight: true },
+    43: { name: 'window4', collides: false, wallDecoration: true, naturalLight: true },
 
     // // -- Triggers --
     // 99: {
