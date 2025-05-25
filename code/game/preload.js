@@ -14,8 +14,8 @@ const assets = {
         buildings: ['house1', 'house2'],
         food: ['cactusChunk', 'cake', 'steak'],
         misc: ['mapTrigger'],
-        decoration: ['painting1', 'painting2', 'rug', 'meshDivider', 'flowerDisplay1', 'flowerDisplay2', 'flowerDisplay3',
-            'furnace', 'barCart', 'bed', 'sideTable', 'flowerPot', 'floorLamp', 'window1', 'window2', 'window3', 'window4'],
+        decoration: ['painting1', 'sofa1', 'rug', 'meshDivider', 'flowerDisplay1', 'flowerDisplay2', 'flowerDisplay3',
+            'furnace', 'barCart', 'bed1', 'sideTable', 'flowerPot', 'floorLamp', 'window1', 'window2', 'window3', 'window4'],
         walls: ['blueStripeWall', 'woodWall', 'tileFloor', 'woodFloor', 'ceiling1', 'ceiling2', 'ceiling3', 'ceiling4']
     },
     audio: ['pop', 'textBlip', 'success',],

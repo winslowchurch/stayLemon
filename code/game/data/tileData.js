@@ -104,9 +104,9 @@ export const TILE_DEFINITIONS = {
     22: { name: 'grassPath', collides: false },
 
     23: {
-        name: 'bed',
+        name: 'bed1',
         collides: true,
-        colliderSize: { width: tileSize * 2, height: tileSize * 2 },
+        colliderSize: { width: tileSize * 2, height: tileSize * 3 },
     },
 
     24: { name: 'woodWall', collides: true, colliderSize: { width: tileSize, height: tileSize * 3 } },
@@ -131,8 +131,8 @@ export const TILE_DEFINITIONS = {
     34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: 'bulb', lightOffset: { x: 0, y: -tileSize }, },
     35: { name: 'flowerPot', collides: true, colliderSize: { width: tileSize * 2 - 16, height: tileSize - 5 }, colliderOffset: { x: 8 } },
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
-    37: { name: 'painting1', collides: false, wallDecoration: true },
-    38: { name: 'painting2', collides: false, wallDecoration: true, imageOffset: { y: -5 } },
+    37: { name: 'sofa1', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
+    38: { name: 'painting1', collides: false, wallDecoration: true, imageOffset: { y: -5 } },
     39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: 'bulb', lightOffset: { x: 0, y: -tileSize } },
     40: { name: 'window1', collides: false, wallDecoration: true, light: 'window', imageOffset: { y: -5 } },
     41: { name: 'window2', collides: false, wallDecoration: true, light: 'window' },
