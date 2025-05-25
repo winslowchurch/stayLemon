@@ -1,4 +1,6 @@
 import { ITEM_DATA } from "../data/itemData.js";
+import { streetMap } from "../maps/streetMap.js";
+import { switchMap } from "../maps/mapManager.js";
 const tileSize = 16;
 
 export function handleTileHit(scene, tile, soundKey, itemDropped) {
@@ -145,9 +147,9 @@ export const TILE_DEFINITIONS = {
     47: { name: 'ceiling4', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize } },
 
     // // -- Triggers --
-    // 99: {
-    //     name: 'mapTrigger',
-    //     collides: false,
-    //     onEnter: (scene) => switchToHoneyspurMap(scene)
-    // },
+    99: { // front door on house
+        name: 'mapTrigger',
+        collides: false,
+        onEnter: (scene) => switchMap(scene, streetMap)
+    },
 };

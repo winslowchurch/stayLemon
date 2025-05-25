@@ -1,5 +1,4 @@
 import { TILE_DEFINITIONS } from '../data/tileData.js';
-import { calibrateUICamera } from "../camera.js";
 import { GAME_SETTINGS } from '../settings.js';
 
 export class MapManager {
@@ -187,4 +186,10 @@ export class MapManager {
         // Attach tile data to the collider
         collider.tile = { ...def, image: tileImage, collider, health: def.health || 0 };
     }
+}
+
+export function switchMap(scene, mapObj) {
+    scene.mapManager.loadMap(mapObj);
+    scene.player.setPosition(64, 64); // Adjust later
+    setupCamera(scene, mapObj);
 }
