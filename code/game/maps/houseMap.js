@@ -30,7 +30,7 @@ export const houseMap = {
 
     objectLayer: [
         [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
-        [null, null, 38, null, null, 40, null, null, null, null, 40, null, null, null],
+        [null, null, 38, null, null, 41, null, null, null, null, 40, null, null, null],
         [24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25],
         [null, null, null, null, null, null, 28, 34, null, null, null, null, null, null],
         [null, null, 35, null, null, null, null, null, null, null, null, null, null, null],

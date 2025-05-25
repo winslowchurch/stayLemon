@@ -8,12 +8,14 @@ const assets = {
     ],
     images: {
         ui: ['textBox', 'closeButton',],
-        nature: ['desert1', 'desert2', 'desert3', 'wall1', 'wall2', 'wall3', 'wall4', 'wall5', 'wall6', 'wall7', 'wall8', 'wall9', 'grass1', 'grass2', 'grassPath', 'skull', 'rock'],
+        nature: ['desert1', 'desert2', 'desert3', 'wall1', 'wall2', 'wall3', 'wall4', 'wall5', 'wall6', 'wall7', 'wall8',
+            'wall9', 'grass1', 'grass2', 'grassPath', 'skull', 'rock'],
         plants: ['cactus1', 'cactus2', 'deadTree', 'pineTree'],
         buildings: ['house1', 'house2'],
         food: ['cactusChunk', 'cake', 'steak'],
         misc: ['mapTrigger'],
-        decoration: ['painting1', 'painting2', 'rug', 'meshDivider', 'flowerDisplay1', 'flowerDisplay2', 'flowerDisplay3', 'furnace', 'barCart', 'bed', 'sideTable', 'flowerPot', 'floorLamp', 'window1'],
+        decoration: ['painting1', 'painting2', 'rug', 'meshDivider', 'flowerDisplay1', 'flowerDisplay2', 'flowerDisplay3',
+            'furnace', 'barCart', 'bed', 'sideTable', 'flowerPot', 'floorLamp', 'window1', 'window2'],
         walls: ['blueStripeWall', 'woodWall', 'tileFloor', 'woodFloor']
     },
     audio: ['pop', 'textBlip', 'success',],
