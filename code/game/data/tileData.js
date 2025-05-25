@@ -114,7 +114,7 @@ export const TILE_DEFINITIONS = {
     26: { name: 'tileFloor', collides: false },
     27: { name: 'woodFloor', collides: false },
 
-    28: { name: 'furnace', collides: true, colliderSize: { width: tileSize, height: tileSize } },
+    28: { name: 'furnace', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: 'flame' },
     29: { name: 'barCart', collides: true, colliderSize: { width: tileSize * 2, height: tileSize } },
     30: {
         name: 'flowerDisplay1',
@@ -128,16 +128,16 @@ export const TILE_DEFINITIONS = {
     },
     32: { name: 'rug', collides: false },
     33: { name: 'meshDivider', collides: true, colliderSize: { width: tileSize * 2, height: tileSize } },
-    34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -tileSize }, },
+    34: { name: 'sideTable', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: 'bulb', lightOffset: { x: 0, y: -tileSize }, },
     35: { name: 'flowerPot', collides: true, colliderSize: { width: tileSize * 2 - 16, height: tileSize - 5 }, colliderOffset: { x: 8 } },
     36: { name: 'flowerDisplay3', collides: true, colliderSize: { width: tileSize * 3, height: tileSize } },
     37: { name: 'painting1', collides: false, wallDecoration: true },
     38: { name: 'painting2', collides: false, wallDecoration: true },
-    39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -tileSize } },
-    40: { name: 'window1', collides: false, wallDecoration: true, naturalLight: true },
-    41: { name: 'window2', collides: false, wallDecoration: true, naturalLight: true },
-    42: { name: 'window3', collides: false, wallDecoration: true, naturalLight: true },
-    43: { name: 'window4', collides: false, wallDecoration: true, naturalLight: true },
+    39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: 'bulb', lightOffset: { x: 0, y: -tileSize } },
+    40: { name: 'window1', collides: false, wallDecoration: true, light: 'window' },
+    41: { name: 'window2', collides: false, wallDecoration: true, light: 'window' },
+    42: { name: 'window3', collides: false, wallDecoration: true, light: 'window' },
+    43: { name: 'window4', collides: false, wallDecoration: true, light: 'window' },
 
     // // -- Triggers --
     // 99: {

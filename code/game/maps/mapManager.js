@@ -8,7 +8,7 @@ export class MapManager {
         this.tileSize = 16;
         this.currentMap = null;
         this.tileImages = [];
-        this.isDay = true;
+        this.isDay = false;
     }
 
     loadMap(mapObj) {
@@ -90,8 +90,6 @@ export class MapManager {
         const mapWidth = cols * this.tileSize;
         const mapHeight = rows * this.tileSize;
 
-        // If the darknessLayer already exists, clear it. Otherwise, create it
-
         if (!this.darknessLayer) {
             this.darknessLayer = this.scene.add.renderTexture(0, 0, mapWidth, mapHeight)
                 .setDepth(GAME_SETTINGS.lightingDepth)
@@ -101,30 +99,28 @@ export class MapManager {
             this.darknessLayer.clear();
         }
 
-        // Fill with dark overlay
-        this.darknessLayer.fill(0x1a002a, 0.7);
+        // Slightly purplish darkness tint
+        this.darknessLayer.fill(0x040112, 0.75);
 
-        // Prepare a graphics object once for drawing light gradients
         if (!this.lightGfx) {
             this.lightGfx = this.scene.make.graphics({ x: 0, y: 0, add: false });
         }
 
-        // Flicker parameters
         const flickerBaseRadius = 48;
-        const flickerRange = 0.5;  // flicker radius varies by ±4
-        const flickerSpeed = 0.00005;  // speed of flicker animation
+        const flickerRange = 0.5;
+        const flickerSpeed = 0.00005;
 
-        // Animate flicker with time
         const time = this.scene.time.now;
 
+        this.lightGfx.clear();
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < cols; col++) {
                 const tileCode = mapObj.objectLayer[row][col];
                 const def = TILE_DEFINITIONS[tileCode];
                 if (!def) continue;
 
-                const isNaturalDayLight = def.naturalLight && this.isDay;
-                const hasOwnLight = def.light;
+                const isNaturalDayLight = def.light === 'window' && this.isDay;
+                const hasOwnLight = def.light && def.light !== 'window';
 
                 if (!isNaturalDayLight && !hasOwnLight) continue;
 
@@ -132,27 +128,33 @@ export class MapManager {
                 const baseY = row * this.tileSize + this.tileSize / 2;
                 const offset = def.lightOffset ?? { x: 0, y: 0 };
 
-                // Flicker radius oscillates smoothly over time
                 const flicker = flickerRange * Math.sin(time * flickerSpeed * (row + col + 1) * 10);
                 const radius = flickerBaseRadius + flicker;
 
-                // Draw the radial gradient for the light
-                this.drawLightGradient(baseX + offset.x, baseY + offset.y, radius);
+                // Determine light color
+                let color = 0xffffff; // assume bulb
+                if (def.light === 'window') {
+                    color = 0xfff2b3; // soft yellow
+                } else if (def.light === 'flame') {
+                    console.log("flame");
+                    color = 0xffa64d; // warm orange
+                }
 
-                // Erase the gradient from darknessLayer to create light effect
+                this.drawLightGradient(baseX + offset.x, baseY + offset.y, radius, color);
+
                 this.darknessLayer.erase(this.lightGfx);
                 this.lightGfx.clear();
             }
         }
     }
 
-    drawLightGradient(x, y, radius) {
-        const steps = 32;  // Number of concentric circles for gradient
+    drawLightGradient(x, y, radius, color) {
+        const steps = 32;
         for (let i = steps; i > 0; i--) {
-            const alpha = (1 / steps) * i * 0.1;  // Max alpha about 0.8
+            const alpha = (1 / steps) * i * 0.1;
             const r = (radius / steps) * i;
 
-            this.lightGfx.fillStyle(0xffffff, alpha);
+            this.lightGfx.fillStyle(color, alpha);
             this.lightGfx.fillCircle(x, y, r);
         }
     }
