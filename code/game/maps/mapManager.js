@@ -63,19 +63,9 @@ export class MapManager {
 
                     const textureKey = def.name;
 
-                    let tileImage;
-                    if (def.hasDayNightVariant) {
-                        const frame = this.isDay ? def.dayFrame : def.nightFrame;
-
-                        tileImage = this.scene.add.image(x, y - imageOffsetY, textureKey)
-                            .setCrop(frame.x, 0, frame.width, imageHeight)
-                            .setOrigin(0)
-                            .setDepth(depth);
-                    } else {
-                        tileImage = this.scene.add.image(x, y - imageOffsetY, textureKey)
-                            .setOrigin(0)
-                            .setDepth(depth);
-                    }
+                    const tileImage = this.scene.add.image(x, y - imageOffsetY, textureKey)
+                        .setOrigin(0)
+                        .setDepth(depth);
                     this.tileImages.push(tileImage);
 
                     if (def.collides && layerKey === 'objectLayer') {
@@ -131,8 +121,12 @@ export class MapManager {
             for (let col = 0; col < cols; col++) {
                 const tileCode = mapObj.objectLayer[row][col];
                 const def = TILE_DEFINITIONS[tileCode];
-                if (!def?.light) continue;
-                if (def.hasDayNightVariant && !this.isDay) continue;
+                if (!def) continue;
+
+                const isNaturalDayLight = def.naturalLight && this.isDay;
+                const hasOwnLight = def.light;
+
+                if (!isNaturalDayLight && !hasOwnLight) continue;
 
                 const baseX = col * this.tileSize + this.tileSize / 2;
                 const baseY = row * this.tileSize + this.tileSize / 2;

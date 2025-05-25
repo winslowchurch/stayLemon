@@ -134,15 +134,7 @@ export const TILE_DEFINITIONS = {
     37: { name: 'painting1', collides: false, wallDecoration: true },
     38: { name: 'painting2', collides: false, wallDecoration: true },
     39: { name: 'floorLamp', collides: true, colliderSize: { width: tileSize, height: tileSize }, light: true, lightOffset: { x: 0, y: -tileSize } },
-    40: {
-        name: 'window1',
-        wallDecoration: true,
-        collides: false,
-        hasDayNightVariant: true,
-        light: true,
-        dayFrame: { x: 0, width: tileSize },
-        nightFrame: { x: tileSize, width: tileSize },
-    },
+    40: { name: 'window1', collides: false, wallDecoration: true, naturalLight: true },
 
     // // -- Triggers --
     // 99: {
