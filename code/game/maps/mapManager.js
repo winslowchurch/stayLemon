@@ -192,7 +192,7 @@ export class MapManager {
 
 export function switchMap(scene, mapObj) {
     scene.mapManager.loadMap(mapObj);
-    scene.player.setPosition(64, 64); // Adjust later
+    scene.player.setPosition(5 * 16, 5 * 16); // Adjust later
     setupCamera(scene, mapObj);
     setupWeather(scene);
 }

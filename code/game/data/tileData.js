@@ -108,7 +108,7 @@ export const TILE_DEFINITIONS = {
     23: {
         name: 'bed1',
         collides: true,
-        colliderSize: { width: tileSize * 2, height: tileSize * 3 },
+        colliderSize: { width: tileSize * 3, height: tileSize * 3 },
     },
 
     24: { name: 'woodWall', collides: true, colliderSize: { width: tileSize, height: tileSize * 3 } },

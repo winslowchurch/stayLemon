@@ -34,7 +34,7 @@ export const streetMap = {
         [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, 7, null, null, null],
-        [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, 20, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null, null, null, null, 7, null],
         [null, null, null, null, null, null, null, null, null, null, null, null, null, null],
