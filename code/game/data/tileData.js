@@ -146,6 +146,9 @@ export const TILE_DEFINITIONS = {
     46: { name: 'ceiling3', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize } },
     47: { name: 'ceiling4', wallDecoration: true, collides: true, colliderSize: { width: tileSize, height: tileSize } },
 
+    48: { name: 'fridge', collides: true, colliderSize: { width: tileSize, height: tileSize } },
+    49: { name: 'sideTable2', collides: true, colliderSize: { width: tileSize, height: tileSize } },
+
     // // -- Triggers --
     99: { // front door on house
         name: 'mapTrigger',

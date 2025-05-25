@@ -1,5 +1,7 @@
 import { TILE_DEFINITIONS } from '../data/tileData.js';
 import { GAME_SETTINGS } from '../settings.js';
+import { setupCamera } from "../camera.js";
+import { setupWeather } from "../weather.js";
 
 export class MapManager {
     constructor(scene) {
@@ -192,4 +194,5 @@ export function switchMap(scene, mapObj) {
     scene.mapManager.loadMap(mapObj);
     scene.player.setPosition(64, 64); // Adjust later
     setupCamera(scene, mapObj);
+    setupWeather(scene);
 }
